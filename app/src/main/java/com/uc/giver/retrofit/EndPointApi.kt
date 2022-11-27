@@ -1,24 +1,16 @@
-//package com.uc.week4retrofit.retrofit
-//
-//import retrofit2.Response
-//import retrofit2.http.GET
-//import retrofit2.http.Path
-//import retrofit2.http.Query
-//
-//interface EndPointApi {
-//
-//    @GET("movie/now_playing")
-//    suspend fun getNowPlaying(
-//        @Query("api_key") apiKey: String,
-//        @Query("language") language: String,
-//        @Query("page") page: Int
-//    ): Response<NowPlaying>
-//
-//    @GET("movie/{movie_id}")
-//    suspend fun getMovieDetails(
-//        @Path("movie_id")id:Int,
-//        @Query("api_key")apiKey: String
-//    ):Response<MovieDetails>
-//
-//
-//}
+package com.uc.giver.retrofit
+
+import com.uc.giver.model.Data
+import com.uc.giver.model.MahasiswaData
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+interface EndPointApi {
+
+    @GET("mahasiswa")
+    suspend fun getAllDataMhs(): Response<MahasiswaData>
+
+
+}

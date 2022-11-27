@@ -68,6 +68,7 @@ fun AnimatedSplashScreen(){
         mContext.startActivity(intent)
 
 
+
 //        val intent = Intent(mContext, MovieDetail::class.java)
 //        intent.putExtra("movie_id", movie.id)
 //        mContext.startActivity(intent)
