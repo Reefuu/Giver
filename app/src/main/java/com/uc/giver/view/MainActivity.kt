@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
+
                         MhsList(mhsList = response)
                     }
                 }
@@ -50,11 +51,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun MhsList(mhsList: ArrayList<Data>) {
     LazyColumn(){
         itemsIndexed(items = mhsList){index, item ->
-            MahasiswaCard(dataMhs = item)
+            MahasiswaCard(dataMhsw = item)
         }
     }
 }
