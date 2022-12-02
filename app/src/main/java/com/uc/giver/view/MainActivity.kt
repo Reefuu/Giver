@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.uc.giver.model.Data
 import com.uc.giver.ui.theme.AppBlueBG
 import com.uc.giver.ui.theme.GiverTheme
+import com.uc.giver.ui.theme.SoftWhite
 import com.uc.giver.view.widgets.MahasiswaCard
 import com.uc.giver.viewModel.MahasiswaViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     // A surface container using the 'background' color from the theme
                     Surface(
                         modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
+                        color = SoftWhite
                     ) {
 
                         MhsList(mhsList = response)

@@ -1,5 +1,6 @@
 package com.uc.giver.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -57,7 +58,7 @@ fun AnimatedSplashScreen(){
         )
     )
 
-    val mContext = LocalContext.current
+    val mContext = LocalContext.current as? Activity
 
 
     LaunchedEffect(key1 = true){
@@ -65,7 +66,8 @@ fun AnimatedSplashScreen(){
         delay(4000)
 
         val intent = Intent(mContext, MainActivity::class.java)
-        mContext.startActivity(intent)
+        mContext?.startActivity(intent)
+        mContext?.finish()
 
 
 

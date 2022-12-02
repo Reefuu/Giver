@@ -1,5 +1,7 @@
 package com.uc.giver.view.widgets
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,15 +12,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.uc.giver.model.Data
 import com.uc.giver.model.MahasiswaData
 import com.uc.giver.ui.theme.AppBlueBG
+import com.uc.giver.view.MainActivity
+
 
 @Composable
 fun MahasiswaCard(dataMhsw: Data) {
 
-//    val mContext = LocalContext.current
+    val mContext = LocalContext.current as? Activity
 
     Surface(
         modifier = Modifier
@@ -29,9 +34,10 @@ fun MahasiswaCard(dataMhsw: Data) {
 
     shape = RoundedCornerShape(12.dp), shadowElevation = 8.dp, color = AppBlueBG,
         onClick = {
-//            val intent = Intent(mContext, MovieDetail::class.java)
-//            intent.putExtra("movie_id", movie.id)
-//            mContext.startActivity(intent)
+            val intent = Intent(mContext, MainActivity::class.java)
+            mContext?.startActivity(intent)
+            mContext?.finish()
+
         }
     ) {
         
