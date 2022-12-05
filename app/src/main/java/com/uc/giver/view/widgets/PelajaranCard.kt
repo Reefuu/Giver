@@ -55,7 +55,7 @@ fun PelajaranCard(dataPljrn: DataX) {
 
             GlideImage(
                 model = "https://via.placeholder.com/200x300.jpg",
-                contentDescription = null,
+                contentDescription = null
             )
 
             Column(
