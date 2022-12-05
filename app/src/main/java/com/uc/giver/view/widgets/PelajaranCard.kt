@@ -54,9 +54,8 @@ fun PelajaranCard(dataPljrn: DataX) {
         ) {
 
             GlideImage(
-                model = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Android_logo_2019_%28stacked%29.svg/1200px-Android_logo_2019_%28stacked%29.svg.png",
+                model = "https://via.placeholder.com/200x300.jpg",
                 contentDescription = null,
-                modifier = Modifier.padding(16.dp),
             )
 
             Column(
