@@ -1,5 +1,6 @@
 package com.uc.giver.retrofit
 
+import com.uc.giver.model.BabData
 import com.uc.giver.model.PelajaranData
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,4 +15,9 @@ interface EndPointApi {
     suspend fun getDataPljrnKelas(
         @Path("kelas")id:Int
     ):Response<PelajaranData>
+
+    @GET("bab/buku/{buku}")
+    suspend fun getDataBabBuku(
+        @Path("buku")id:Int
+    ):Response<BabData>
 }

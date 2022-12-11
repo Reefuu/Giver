@@ -11,18 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.uc.giver.model.DataX
+import com.uc.giver.model.Data
 import com.uc.giver.ui.theme.AppBlueBG
 import com.uc.giver.view.BabActivity
-import com.uc.giver.view.MainActivity
-
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun PelajaranCard(dataPljrn: DataX) {
+fun BabCard(dataBab: Data) {
 
     val mContext = LocalContext.current as? Activity
 
@@ -33,11 +30,13 @@ fun PelajaranCard(dataPljrn: DataX) {
             .width(340.dp)
         ,
 
-    shape = RoundedCornerShape(16.dp), shadowElevation = 8.dp, color = AppBlueBG,
+        shape = RoundedCornerShape(16.dp), shadowElevation = 8.dp, color = AppBlueBG,
         onClick = {
             val intent = Intent(mContext, BabActivity::class.java)
-            intent.putExtra("buku", 1)
+            intent.putExtra("buku", dataBab.buku_id)
             mContext?.startActivity(intent)
+            mContext?.finish()
+
         }
     ) {
         Row(
@@ -47,7 +46,7 @@ fun PelajaranCard(dataPljrn: DataX) {
         ) {
 
             GlideImage(
-                model = "https://via.placeholder.com/200x300.jpg",
+                model = dataBab.image_cover,
                 contentDescription = null,
             )
 
@@ -57,17 +56,10 @@ fun PelajaranCard(dataPljrn: DataX) {
                     .padding(16.dp)
             ) {
                 Text(
-                    text = dataPljrn.nama_pelajaran,
+                    text = dataBab.bab_nama,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
-                        .padding(top = 6.dp)
-                )
-                Text(
-                    text = "Kelas : "
-                            + dataPljrn.kelas,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier
-                        .padding(top = 22.dp)
+                        .padding(top = 24.dp)
                 )
             }
         }
