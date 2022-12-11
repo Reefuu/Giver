@@ -13,15 +13,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.uc.giver.model.DataX
+import com.uc.giver.model.Data
+import com.uc.giver.model.DataXX
 import com.uc.giver.ui.theme.AppBlueBG
 import com.uc.giver.view.BabActivity
 import com.uc.giver.view.BukuActivity
 
-
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun PelajaranCard(dataPljrn: DataX) {
+fun BukuCard(dataBuku: DataXX) {
 
     val mContext = LocalContext.current as? Activity
 
@@ -32,11 +32,12 @@ fun PelajaranCard(dataPljrn: DataX) {
             .width(340.dp)
         ,
 
-    shape = RoundedCornerShape(16.dp), shadowElevation = 8.dp, color = AppBlueBG,
+        shape = RoundedCornerShape(16.dp), shadowElevation = 8.dp, color = AppBlueBG,
         onClick = {
-            val intent = Intent(mContext, BukuActivity::class.java)
-            intent.putExtra("pelajaran", dataPljrn.pelajaran_id)
+            val intent = Intent(mContext, BabActivity::class.java)
+            intent.putExtra("buku", dataBuku.buku_id)
             mContext?.startActivity(intent)
+
         }
     ) {
         Row(
@@ -46,7 +47,7 @@ fun PelajaranCard(dataPljrn: DataX) {
         ) {
 
             GlideImage(
-                model = "https://via.placeholder.com/200x300.jpg",
+                model = dataBuku.image_cover,
                 contentDescription = null,
             )
 
@@ -56,17 +57,10 @@ fun PelajaranCard(dataPljrn: DataX) {
                     .padding(16.dp)
             ) {
                 Text(
-                    text = dataPljrn.nama_pelajaran,
+                    text = dataBuku.nama_buku,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
-                        .padding(top = 6.dp)
-                )
-                Text(
-                    text = "Kelas : "
-                            + dataPljrn.kelas,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier
-                        .padding(top = 22.dp)
+                        .padding(top = 24.dp)
                 )
             }
         }

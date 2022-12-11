@@ -1,7 +1,6 @@
-package com.uc.week4retrofit.retrofit
+package com.uc.giver.retrofit
 
 import com.uc.giver.helper.Const
-import com.uc.giver.retrofit.EndPointApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

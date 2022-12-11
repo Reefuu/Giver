@@ -16,30 +16,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.uc.giver.model.Data
+import com.uc.giver.model.DataXX
 import com.uc.giver.ui.theme.GiverTheme
 import com.uc.giver.ui.theme.SoftWhite
-import com.uc.giver.view.widgets.BabCard
-import com.uc.giver.viewModel.BabViewModel
+import com.uc.giver.view.widgets.BukuCard
+import com.uc.giver.viewModel.BukuViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BabActivity : ComponentActivity() {
+class BukuActivity : ComponentActivity() {
 
-    private lateinit var babViewModel: BabViewModel
+    private lateinit var bukuViewModel: BukuViewModel
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val buku = intent.getIntExtra("buku", 1)
+        val pelajaran = intent.getIntExtra("pelajaran", 1)
 
 
-        babViewModel = ViewModelProvider(this).get(BabViewModel::class.java)
+        bukuViewModel = ViewModelProvider(this).get(BukuViewModel::class.java)
 
-        babViewModel.getDataBabBuku(buku)
+        bukuViewModel.getDataBukuPljrn(pelajaran)
 
-        babViewModel.dataBabBuku.observe(this, Observer { response ->
+        bukuViewModel.dataBukuPljrn.observe(this, Observer { response ->
             setContent {
                 Scaffold(
                     floatingActionButton = {
@@ -57,7 +57,7 @@ class BabActivity : ComponentActivity() {
                             color = SoftWhite,
                         ) {
                             Column {
-                                BabList(bab = response)
+                                BukuList(buku = response)
                             }
                         }
                     }
@@ -70,13 +70,13 @@ class BabActivity : ComponentActivity() {
 
 
 @Composable
-fun BabList(bab: ArrayList<Data>) {
+fun BukuList(buku: ArrayList<DataXX>) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        itemsIndexed(items = bab) { index, item ->
-            BabCard(dataBab = item)
+        itemsIndexed(items = buku) { index, item ->
+            BukuCard(dataBuku = item)
         }
 
     }
