@@ -26,6 +26,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.uc.giver.ui.theme.AppBlueBG
 import com.uc.giver.ui.theme.GiverTheme
 import com.uc.giver.ui.theme.SoftWhite
@@ -66,6 +68,7 @@ fun AnimatedSplashScreen(){
         delay(4000)
 
         val intent = Intent(mContext, MainActivity::class.java)
+        intent.putExtra("kelas", 1)
         mContext?.startActivity(intent)
         mContext?.finish()
 
@@ -83,6 +86,7 @@ fun AnimatedSplashScreen(){
     Splash(alphaAnim.value)
 }
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun Splash(alpha: Float){
     Box(modifier = Modifier
@@ -90,12 +94,20 @@ fun Splash(alpha: Float){
         .fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
-        Icon(
+//        Icon(
+//            modifier = Modifier
+//                .size(120.dp)
+//                .alpha(alpha = alpha),
+//            imageVector = Icons.Default.Home,
+//            contentDescription = "Logo ICON",
+//            tint = SoftWhite)
+
+        GlideImage(
+            model = "https://i.postimg.cc/zvwbtndw/09-F557-DA-A787-4484-830-A-BB2-D6-F2-FB920.png",
+            contentDescription = null,
             modifier = Modifier
-                .size(120.dp)
-                .alpha(alpha = alpha),
-            imageVector = Icons.Default.Home,
-            contentDescription = "Logo ICON",
-            tint = SoftWhite)
+                .alpha(alpha = alpha)
+                .size(1000.dp)
+        )
     }
 }

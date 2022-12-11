@@ -10,4 +10,7 @@ class PelajaranRepository @Inject constructor(
     suspend fun getAllDataPljrn() =
         api.getAllDataPljrn()
 
+    suspend fun getDataPljrnKelas(kelas: Int) =
+        api.getDataPljrnKelas(kelas)
+
 }
