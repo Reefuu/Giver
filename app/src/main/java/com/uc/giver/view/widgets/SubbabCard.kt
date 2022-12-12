@@ -13,14 +13,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.uc.giver.model.Data
+import com.uc.giver.model.DataXXX
 import com.uc.giver.ui.theme.AppBlueBG
-import com.uc.giver.view.BabActivity
 import com.uc.giver.view.SubbabActivity
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun BabCard(dataBab: Data) {
+fun SubbabCard(dataSubbab: DataXXX) {
 
     val mContext = LocalContext.current as? Activity
 
@@ -34,9 +33,9 @@ fun BabCard(dataBab: Data) {
         shape = RoundedCornerShape(16.dp), shadowElevation = 8.dp, color = AppBlueBG,
         onClick = {
             val intent = Intent(mContext, SubbabActivity::class.java)
-            intent.putExtra("bab", dataBab.bab_id)
+            intent.putExtra("subbab", dataSubbab.subbab_id)
             mContext?.startActivity(intent)
-
+            mContext?.finish()
         }
     ) {
         Row(
@@ -46,7 +45,7 @@ fun BabCard(dataBab: Data) {
         ) {
 
             GlideImage(
-                model = dataBab.image_cover,
+                model = dataSubbab.imageBanner,
                 contentDescription = null,
             )
 
@@ -56,7 +55,7 @@ fun BabCard(dataBab: Data) {
                     .padding(16.dp)
             ) {
                 Text(
-                    text = dataBab.bab_nama,
+                    text = dataSubbab.materi,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
                         .padding(top = 24.dp)

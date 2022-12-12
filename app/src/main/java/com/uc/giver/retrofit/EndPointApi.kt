@@ -3,6 +3,7 @@ package com.uc.giver.retrofit
 import com.uc.giver.model.BabData
 import com.uc.giver.model.BukuData
 import com.uc.giver.model.PelajaranData
+import com.uc.giver.model.SubbabData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -26,4 +27,9 @@ interface EndPointApi {
     suspend fun getDataBukuPljrn(
         @Path("pelajaran")id:Int
     ):Response<BukuData>
+
+    @GET("subbab/bab/{bab}")
+    suspend fun getDataSubbabBab(
+        @Path("bab")id:Int
+    ):Response<SubbabData>
 }
