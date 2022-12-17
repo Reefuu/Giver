@@ -1,11 +1,15 @@
 package com.uc.giver.viewModel
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uc.giver.model.DataX
+import com.uc.giver.model.PelajaranState
 import com.uc.giver.repository.PelajaranRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,6 +18,8 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class PelajaranViewModel @Inject constructor(private val repository: PelajaranRepository) :
     ViewModel() {
+
+    var state by mutableStateOf(PelajaranState())
 
     //get all data pelajaran
 
@@ -55,7 +61,18 @@ class PelajaranViewModel @Inject constructor(private val repository: PelajaranRe
             }
     }
 
-
+    fun addPljrn(){
+        viewModelScope.launch {
+            state = state.copy(isLoading = true)
+            repository.addPljrn(
+                nama_pelajaran = state.nama_pelajaran,
+                kelas = state.kelas,
+                image = state.image,
+                imageBanner = state.imageBanner,
+            )
+            state = state.copy(isLoading = false)
+        }
+    }
 
 
 }

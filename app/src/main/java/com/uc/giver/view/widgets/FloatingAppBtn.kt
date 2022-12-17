@@ -1,5 +1,7 @@
 package com.uc.giver.view.widgets
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -7,26 +9,23 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.uc.giver.ui.theme.AppBlueBG
+import com.uc.giver.view.BukuActivity
+import com.uc.giver.view.FormAddPelajaran
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FloatingAppBtn(){
-//    ExtendedFloatingActionButton(
-//        icon = { Icon(Icons.Default.Add,"") },
-//        text = { Text("") },
-//        onClick = { /*do something*/ },
-//        elevation = FloatingActionButtonDefaults.elevation(8.dp)
-//    )
+fun FloatingAppBtn() {
 
-    FloatingActionButton(
-        modifier = Modifier.size(40.dp),
-//        shape = ,
-        onClick = {  },
-        contentColor = Color.Black
-    ){
-        Icon(Icons.Filled.Add,null)
+    val mContext = LocalContext?.current as Activity?
+
+    val intent = Intent(mContext, FormAddPelajaran::class.java)
+
+    FloatingActionButton(onClick = {
+        mContext?.startActivity(intent)
+    }) {
+        Icon(Icons.Filled.Add, null)
     }
 }

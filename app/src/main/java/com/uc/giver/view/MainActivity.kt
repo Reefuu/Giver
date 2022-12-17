@@ -1,5 +1,8 @@
 package com.uc.giver.view
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +15,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.uc.giver.model.DataX
@@ -27,6 +32,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var pljrnViewModel: PelajaranViewModel
 
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,28 +49,26 @@ class MainActivity : ComponentActivity() {
                 setContent {
                     Scaffold(
                         floatingActionButton = {
-                            FloatingActionButton(onClick = { /* ... */ }) {
-                                Icon(Icons.Filled.Add, null)
-                            }
+                            FAB()
                         },
                         // Defaults to FabPosition.End
-                        floatingActionButtonPosition = FabPosition.End
-                    ) {
-                        // Screen content
-                        GiverTheme {
-                            // A surface container using the 'background' color from the theme
-                            Surface(
-                                modifier = Modifier.fillMaxSize(),
-                                color = SoftWhite,
-                            ) {
-                                Column {
-                                    btnFilter()
-                                    PljrnList(pljrn = response)
-                                    FAB()
+                        floatingActionButtonPosition = FabPosition.End,
+                        content = {
+                            GiverTheme {
+                                // A surface container using the 'background' color from the theme
+                                Surface(
+                                    modifier = Modifier.fillMaxSize(),
+                                    color = SoftWhite,
+                                ) {
+                                    Column {
+                                        btnFilter()
+                                        PljrnList(pljrn = response)
+                                        FAB()
+                                    }
                                 }
                             }
                         }
-                    }
+                    )
                 }
             })
         } else {
@@ -74,27 +78,28 @@ class MainActivity : ComponentActivity() {
                 setContent {
                     Scaffold(
                         floatingActionButton = {
-                            FloatingActionButton(onClick = { /* ... */ }) {
+                            FloatingActionButton(onClick = { pljrnViewModel.addPljrn() }) {
                                 Icon(Icons.Filled.Add, null)
                             }
                         },
                         // Defaults to FabPosition.End
-                        floatingActionButtonPosition = FabPosition.End
-                    ) {
-                        GiverTheme {
-                            // A surface container using the 'background' color from the theme
-                            Surface(
-                                modifier = Modifier.fillMaxSize(),
-                                color = SoftWhite,
-                            ) {
-                                Column {
-                                    btnFilter()
+                        floatingActionButtonPosition = FabPosition.End,
+                        content = {
+                            GiverTheme {
+                                // A surface container using the 'background' color from the theme
+                                Surface(
+                                    modifier = Modifier.fillMaxSize(),
+                                    color = SoftWhite,
+                                ) {
+                                    Column {
+                                        btnFilter()
 
-                                    PljrnList(pljrn = response)
+                                        PljrnList(pljrn = response)
+                                    }
                                 }
                             }
                         }
-                    }
+                    )
                 }
             })
         }
@@ -125,7 +130,7 @@ fun btnFilter() {
 
 @Composable
 fun FAB() {
-    FloatingAppBtn()
+ FloatingAppBtn()
 }
 
 

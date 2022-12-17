@@ -1,5 +1,6 @@
 package com.uc.giver.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,6 +29,7 @@ class BabActivity : ComponentActivity() {
 
     private lateinit var babViewModel: BabViewModel
 
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,20 +50,21 @@ class BabActivity : ComponentActivity() {
                         }
                     },
                     // Defaults to FabPosition.End
-                    floatingActionButtonPosition = FabPosition.End
-                ) {
-                    GiverTheme {
-                        // A surface container using the 'background' color from the theme
-                        Surface(
-                            modifier = Modifier.fillMaxSize(),
-                            color = SoftWhite,
-                        ) {
-                            Column {
-                                BabList(bab = response)
+                    floatingActionButtonPosition = FabPosition.End,
+                    content = {
+                        GiverTheme {
+                            // A surface container using the 'background' color from the theme
+                            Surface(
+                                modifier = Modifier.fillMaxSize(),
+                                color = SoftWhite,
+                            ) {
+                                Column {
+                                    BabList(bab = response)
+                                }
                             }
                         }
                     }
-                }
+                )
             }
         })
 
