@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
@@ -15,6 +13,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.uc.giver.model.DataXX
@@ -52,6 +52,7 @@ class BukuActivity : ComponentActivity() {
                     // Defaults to FabPosition.End
                     floatingActionButtonPosition = FabPosition.End,
                     content = {
+                        
                         GiverTheme {
                             // A surface container using the 'background' color from the theme
                             Surface(
@@ -59,7 +60,20 @@ class BukuActivity : ComponentActivity() {
                                 color = SoftWhite,
                             ) {
                                 Column {
-                                    BukuList(buku = response)
+                                    if (response != null){
+                                        BukuList(buku = response)
+                                    }else{
+                                        Column(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .fillMaxHeight(),
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                            verticalArrangement = Arrangement.Center,
+                                        ) {
+                                            Text(text = "Masih Belum Ada Buku di Pelajaran Ini!", fontWeight = FontWeight.Bold)
+                                        }
+                                    }
+                                    
                                 }
                             }
                         }

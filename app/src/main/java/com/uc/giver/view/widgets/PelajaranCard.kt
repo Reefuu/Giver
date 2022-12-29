@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
@@ -60,7 +61,9 @@ fun PelajaranCard(dataPljrn: DataX) {
                     text = dataPljrn.nama_pelajaran,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
-                        .padding(top = 6.dp)
+                        .padding(top = 6.dp),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,   
                 )
                 Text(
                     text = "Kelas : "

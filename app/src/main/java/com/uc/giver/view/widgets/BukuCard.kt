@@ -48,7 +48,7 @@ fun BukuCard(dataBuku: DataXX) {
         ) {
 
             GlideImage(
-                model = dataBuku.image_cover,
+                model = "https://via.placeholder.com/200x300.jpg",
                 contentDescription = null,
             )
 

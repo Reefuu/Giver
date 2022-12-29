@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
@@ -47,7 +48,7 @@ fun BabCard(dataBab: Data) {
         ) {
 
             GlideImage(
-                model = dataBab.image_cover,
+                model = "https://via.placeholder.com/200x300.jpg",
                 contentDescription = null,
             )
 
@@ -60,7 +61,9 @@ fun BabCard(dataBab: Data) {
                     text = dataBab.bab_nama,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
-                        .padding(top = 24.dp)
+                        .padding(top = 24.dp),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
         }

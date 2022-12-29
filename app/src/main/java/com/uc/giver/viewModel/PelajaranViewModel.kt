@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import com.uc.giver.model.DataX
 import com.uc.giver.model.PelajaranState
 import com.uc.giver.repository.PelajaranRepository
+import com.uc.giver.view.events.AddPljrnEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -61,16 +62,23 @@ class PelajaranViewModel @Inject constructor(private val repository: PelajaranRe
             }
     }
 
-    fun addPljrn(){
+    fun onEvent(event: AddPljrnEvent){
+        when(event){
+            is AddPljrnEvent.OnPljrnNameChange -> {
+                state = state.copy(nama_pelajaran = event.content)
+            }
+        }
+    }
+
+    fun addPljrn(
+    ){
         viewModelScope.launch {
-            state = state.copy(isLoading = true)
             repository.addPljrn(
                 nama_pelajaran = state.nama_pelajaran,
                 kelas = state.kelas,
                 image = state.image,
                 imageBanner = state.imageBanner,
             )
-            state = state.copy(isLoading = false)
         }
     }
 

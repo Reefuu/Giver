@@ -5,5 +5,4 @@ data class PelajaranState(
     val kelas: Int = 0,
     val image: String = "",
     val imageBanner: String = "",
-    val isLoading:  Boolean = false,
 )
