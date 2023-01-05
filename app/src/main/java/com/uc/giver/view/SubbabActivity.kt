@@ -98,5 +98,5 @@ fun SubbabList(subbab: ArrayList<DataXXX>, bab_nama:String) {
 
 @Composable
 fun subbabFAB(babInt: Int) {
-    FloatingAppBtn(pelajaranInt = 0, bukuInt = 0, babInt = babInt)
+    FloatingAppBtn(pelajaranInt = 0, bukuInt = 0, babInt = babInt, 0)
 }

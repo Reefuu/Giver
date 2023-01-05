@@ -94,5 +94,5 @@ class FormAddBuku : ComponentActivity() {
 
 @Composable
 fun addBukuFAB(pelajaranInt: Int) {
-    FloatingAppBtn(pelajaranInt = pelajaranInt, 0, 0)
+    FloatingAppBtn(pelajaranInt = pelajaranInt, 0, 0, 0)
 }

@@ -97,5 +97,5 @@ fun BabList(bab: ArrayList<Data>) {
 
 @Composable
 fun babFAB(bukuInt: Int) {
-    FloatingAppBtn(pelajaranInt = 0, bukuInt = bukuInt, 0)
+    FloatingAppBtn(pelajaranInt = 0, bukuInt = bukuInt, 0, 0)
 }

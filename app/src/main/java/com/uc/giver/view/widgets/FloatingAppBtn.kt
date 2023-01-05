@@ -23,7 +23,7 @@ import com.uc.giver.viewModel.SubbabViewModel
 
 
 @Composable
-fun FloatingAppBtn(pelajaranInt: Int, bukuInt: Int, babInt: Int) {
+fun FloatingAppBtn(pelajaranInt: Int, bukuInt: Int, babInt: Int, subbabInt: Int) {
 
     val mContext = LocalContext?.current as Activity?
     val viewModelStoreOwner = when (mContext) {

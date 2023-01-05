@@ -22,6 +22,8 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.uc.giver.model.DataXXX
 import com.uc.giver.ui.theme.*
+import com.uc.giver.view.BukuActivity
+import com.uc.giver.view.QuizActivity
 import com.uc.giver.view.SubbabActivity
 
 //@OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
@@ -118,6 +120,10 @@ fun Subbab(dataSubbab: DataXXX, namaBab:String) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Button(onClick = {
+                val intent = Intent(mContext, QuizActivity::class.java)
+                intent.putExtra("subbab", dataSubbab.subbab_id)
+                intent.putExtra("subbab_nama", namaBab)
+                mContext?.startActivity(intent)
 
             }, colors = ButtonDefaults.buttonColors(containerColor = quizGreenBtn),modifier = Modifier
                 .padding(start = 16.dp, end = 4.dp).height(50.dp)

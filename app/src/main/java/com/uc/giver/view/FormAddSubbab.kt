@@ -92,5 +92,5 @@ class FormAddSubbab : ComponentActivity() {
 
 @Composable
 fun addSubbabFAB(babInt: Int) {
-    FloatingAppBtn(0, 0, babInt = babInt)
+    FloatingAppBtn(0, 0, babInt = babInt, 0)
 }

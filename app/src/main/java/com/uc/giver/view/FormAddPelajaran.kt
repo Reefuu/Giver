@@ -157,5 +157,5 @@ class FormAddPelajaran : ComponentActivity() {
 
 @Composable
 fun addFAB() {
-    FloatingAppBtn(0, 0, 0)
+    FloatingAppBtn(0, 0, 0, 0)
 }

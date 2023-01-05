@@ -60,4 +60,12 @@ interface EndPointApi {
     suspend fun getDataSubbabBab(
         @Path("bab")id:Int
     ):Response<SubbabData>
+
+    @GET("quiz/subbab/{subbab}")
+    suspend fun getDataQuizSubbab(
+        @Path("subbab")id:Int
+    ):Response<QuizData>
+
+    @POST("quiz")
+    suspend fun addQuiz(@Body body: RequestBody?):ResponseBody?
 }
