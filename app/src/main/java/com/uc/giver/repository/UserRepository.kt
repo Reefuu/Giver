@@ -9,6 +9,9 @@ class UserRepository @Inject constructor(
     private val api:
     EndPointApi
 ) {
+    suspend fun getDataUser() =
+        api.getDataUser()
+
     suspend fun login(
         nama: String,
         password: String,
@@ -34,5 +37,17 @@ class UserRepository @Inject constructor(
             .build()
 
         api.register(requestBody)
+    }
+    suspend fun addKoin(
+        nama: String,
+        koin: Int
+    ) {
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("nama", nama)
+            .addFormDataPart("koin", koin.toString())
+            .build()
+
+        api.addKoin(requestBody)
     }
 }

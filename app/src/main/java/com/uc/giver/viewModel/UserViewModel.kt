@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uc.giver.model.DataX
+import com.uc.giver.model.DataXXXX
 import com.uc.giver.model.PelajaranState
 import com.uc.giver.model.UserState
 import com.uc.giver.repository.PelajaranRepository
@@ -23,25 +24,25 @@ class UserViewModel @Inject constructor(private val repository: UserRepository) 
 
     var state by mutableStateOf(UserState())
 
-    //get data user
-//
-//    val _dataPljrn: MutableLiveData<ArrayList<DataX>> by lazy {
-//        MutableLiveData<ArrayList<DataX>>()
-//    }
-//
-//    val dataPljrn: LiveData<ArrayList<DataX>>
-//        get() = _dataPljrn
-//
-//    fun getAllDataPljrn() = viewModelScope.launch {
-//        repository.getAllDataPljrn()
-//            .let { response ->
-//                if (response.isSuccessful) {
-//                    _dataPljrn.postValue(response.body()?.data as ArrayList<DataX>?)
-//                } else {
-//                    Log.e("Get All Data Pelajaran", "Failed")
-//                }
-//            }
-//    }
+//    get data user
+
+    val _dataUser: MutableLiveData<ArrayList<DataXXXX>> by lazy {
+        MutableLiveData<ArrayList<DataXXXX>>()
+    }
+
+    val dataUser: LiveData<ArrayList<DataXXXX>>
+        get() = _dataUser
+
+    fun getDataUser() = viewModelScope.launch {
+        repository.getDataUser()
+            .let { response ->
+                if (response.isSuccessful) {
+                    _dataUser.postValue(response.body()?.data as ArrayList<DataXXXX>?)
+                } else {
+                    Log.e("Get Data User", "Failed")
+                }
+            }
+    }
 
 
     fun login(
@@ -50,6 +51,15 @@ class UserViewModel @Inject constructor(private val repository: UserRepository) 
             repository.login(
                 nama = state.nama,
                 password = state.password,
+            )
+        }
+    }
+    fun addKoin(
+    ){
+        viewModelScope.launch {
+            repository.addKoin(
+                nama = state.nama,
+                koin = state.koin,
             )
         }
     }

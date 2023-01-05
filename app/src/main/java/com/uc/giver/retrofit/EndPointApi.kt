@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -33,6 +34,12 @@ interface EndPointApi {
 
     @POST("register")
     suspend fun register(@Body body: RequestBody?):ResponseBody?
+
+    @GET("users")
+    suspend fun getDataUser(): Response<UserData>
+
+    @PATCH("koin")
+    suspend fun addKoin(@Body body: RequestBody?):ResponseBody?
 
     @GET("pelajaran/kelas/{kelas}")
     suspend fun getDataPljrnKelas(

@@ -17,10 +17,11 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.uc.giver.ui.theme.SoftBlack
 import com.uc.giver.view.MainActivity
+import com.uc.giver.view.ProfileActivity
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun AccountBtn() {
+fun AccountBtn(uname: String) {
     val mContext = LocalContext.current as? Activity
 
     Row() {
@@ -34,10 +35,9 @@ fun AccountBtn() {
                 .clip(CircleShape)
                 .border(1.dp, SoftBlack, CircleShape)
                 .clickable {
-                    val intent = Intent(mContext, MainActivity::class.java)
-                    intent.putExtra("kelas", 1)
+                    val intent = Intent(mContext, ProfileActivity::class.java)
+                    intent.putExtra("uname", uname)
                     mContext?.startActivity(intent)
-                    mContext?.finish()
                 },
             contentScale = ContentScale.Crop,
         )

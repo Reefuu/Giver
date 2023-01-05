@@ -16,17 +16,21 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.uc.giver.helper.Const
 import com.uc.giver.model.DataX
+import com.uc.giver.model.DataXXXX
 import com.uc.giver.ui.theme.*
 import com.uc.giver.view.widgets.AccountBtn
 import com.uc.giver.view.widgets.FilterBtn
 import com.uc.giver.view.widgets.FloatingAppBtn
 import com.uc.giver.view.widgets.PelajaranCard
 import com.uc.giver.viewModel.PelajaranViewModel
+import com.uc.giver.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,12 +38,39 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var pljrnViewModel: PelajaranViewModel
 
+    private lateinit var userViewModel: UserViewModel
+
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userViewModel= ViewModelProvider(this).get(UserViewModel::class.java)
 
         val kelas = intent.getIntExtra("kelas", 1)
+        val nama = intent.getStringExtra("uname")
+
+        if (Const.uname.isEmpty()){
+            Const.uname = nama.toString()
+        }
+
+        userViewModel.getDataUser()
+
+        userViewModel.dataUser.observe(this, Observer { response ->
+            response.forEach {
+                if (it.nama == Const.uname){
+                    if (Const.koin != it.koin){
+                        userViewModel.state = userViewModel.state.copy(koin = Const.koin)
+                    }else{
+                        userViewModel.state = userViewModel.state.copy(koin = it.koin)
+                    }
+                    userViewModel.state = userViewModel.state.copy(
+                        email = it.email, image = it.image, nama = it.nama, nomor_telepon = it.nomor_telepon, password = it.password
+                    )
+                    Const.koin = userViewModel.state.koin
+                    userViewModel.addKoin()
+                }
+            }
+        })
 
 
         pljrnViewModel = ViewModelProvider(this).get(PelajaranViewModel::class.java)
@@ -63,10 +94,9 @@ class MainActivity : ComponentActivity() {
                                     color = SoftWhite,
                                 ) {
                                     Column {
-                                        AccBtn()
+                                        AccBtn(userViewModel.state.nama)
                                         btnFilter()
                                         PljrnList(pljrn = response)
-                                        FAB()
                                     }
                                 }
                             }
@@ -93,8 +123,8 @@ class MainActivity : ComponentActivity() {
                                     color = SoftWhite,
                                 ) {
                                     Column {
+                                        AccBtn(userViewModel.state.nama)
                                         btnFilter()
-
                                         PljrnList(pljrn = response)
                                     }
                                 }
@@ -122,6 +152,7 @@ fun PljrnList(pljrn: ArrayList<DataX>) {
     }
 }
 
+
 @Composable
 fun btnFilter() {
     Column {
@@ -135,6 +166,6 @@ fun FAB() {
 }
 
 @Composable
-fun AccBtn(){
-    AccountBtn()
+fun AccBtn(uname: String){
+    AccountBtn(uname)
 }

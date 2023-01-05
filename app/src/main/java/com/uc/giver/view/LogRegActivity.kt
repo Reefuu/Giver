@@ -38,9 +38,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.uc.giver.helper.Const
 import com.uc.giver.ui.theme.*
 import com.uc.giver.viewModel.PelajaranViewModel
 import com.uc.giver.viewModel.UserViewModel
@@ -68,9 +71,8 @@ class LogRegActivity : ComponentActivity() {
                             .fillMaxHeight()
                             .verticalScroll(rememberScrollState())
                     ) {
-
+                        LoginRegister(login)
                     }
-                    LoginRegister(login)
                 }
             }
         }
@@ -79,10 +81,7 @@ class LogRegActivity : ComponentActivity() {
 
 @Composable
 fun LoginRegister(login: Int) {
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-    ) {
+    Column() {
         MyCard(login)
     }
 }
@@ -127,6 +126,7 @@ fun Content(login: Int) {
     lateinit var userViewModel: UserViewModel
     val mContext = LocalContext.current as ViewModelStoreOwner
     val myContext = LocalContext.current as Activity?
+    val my2Context = LocalContext.current as LifecycleOwner
     val regexMail = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"
     val patternMail = Pattern.compile(regexMail)
 
@@ -283,6 +283,15 @@ fun Content(login: Int) {
                         userViewModel.register()
                     }else{
                         userViewModel.login()
+                        userViewModel.getDataUser()
+
+                        userViewModel.dataUser.observe(my2Context, Observer { response ->
+                            response.forEach {
+                                if (it.nama == userViewModel.state.nama){
+                                    Const.koin = it.koin
+                                }
+                            }
+                        })
                     }
                     myContext?.startActivity(intent)
                     myContext?.finish()
