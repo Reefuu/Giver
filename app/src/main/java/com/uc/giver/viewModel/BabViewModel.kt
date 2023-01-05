@@ -1,10 +1,14 @@
 package com.uc.giver.viewModel
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.uc.giver.model.BabState
 import com.uc.giver.model.Data
 import com.uc.giver.repository.BabRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class BabViewModel @Inject constructor(private val repository: BabRepository) :
     ViewModel() {
+
+    var state by mutableStateOf(BabState())
 
     //get data pelajaran kelas
 
@@ -33,5 +39,17 @@ class BabViewModel @Inject constructor(private val repository: BabRepository) :
                     Log.e("Get Data Bab Buku", "Failed")
                 }
             }
+    }
+
+    fun addBab(
+    ){
+        viewModelScope.launch {
+            repository.addBab(
+                bab_nama = state.bab_nama,
+                buku_id = state.buku_id,
+                imageCover = state.imageCover,
+                imageBanner = state.imageBanner,
+            )
+        }
     }
 }

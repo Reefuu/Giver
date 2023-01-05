@@ -21,6 +21,7 @@ import com.uc.giver.model.DataXX
 import com.uc.giver.ui.theme.GiverTheme
 import com.uc.giver.ui.theme.SoftWhite
 import com.uc.giver.view.widgets.BukuCard
+import com.uc.giver.view.widgets.FloatingAppBtn
 import com.uc.giver.viewModel.BukuViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,9 +46,7 @@ class BukuActivity : ComponentActivity() {
             setContent {
                 Scaffold(
                     floatingActionButton = {
-                        FloatingActionButton(onClick = { /* ... */ }) {
-                            Icon(Icons.Filled.Add, null)
-                        }
+                        bukuFAB(pelajaran)
                     },
                     // Defaults to FabPosition.End
                     floatingActionButtonPosition = FabPosition.End,
@@ -97,4 +96,9 @@ fun BukuList(buku: ArrayList<DataXX>) {
         }
 
     }
+}
+
+@Composable
+fun bukuFAB(pelajaranInt: Int) {
+    FloatingAppBtn(pelajaranInt = pelajaranInt, 0, 0)
 }

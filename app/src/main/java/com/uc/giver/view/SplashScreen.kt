@@ -67,8 +67,8 @@ fun AnimatedSplashScreen(){
         startAnimation = true
         delay(4000)
 
-        val intent = Intent(mContext, MainActivity::class.java)
-        intent.putExtra("kelas", 1)
+        val intent = Intent(mContext, LogRegActivity::class.java)
+        intent.putExtra("login", 1)
         mContext?.startActivity(intent)
         mContext?.finish()
 

@@ -1,11 +1,16 @@
 package com.uc.giver.viewModel
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.uc.giver.model.BabState
 import com.uc.giver.model.DataXXX
+import com.uc.giver.model.SubbabState
 import com.uc.giver.repository.SubbabRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,6 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SubbabViewModel @Inject constructor(private val repository: SubbabRepository) :
     ViewModel() {
+
+    var state by mutableStateOf(SubbabState())
 
     //get data pelajaran kelas
 
@@ -33,5 +40,16 @@ class SubbabViewModel @Inject constructor(private val repository: SubbabReposito
                     Log.e("Get Data Subbab Bab", "Failed")
                 }
             }
+    }
+
+    fun addSubbab(
+    ){
+        viewModelScope.launch {
+            repository.addSubbab(
+                materi = state.materi,
+                imageBanner = state.imageBanner,
+                bab_id = state.bab_id,
+            )
+        }
     }
 }

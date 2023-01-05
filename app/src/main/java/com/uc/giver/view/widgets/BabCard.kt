@@ -37,6 +37,7 @@ fun BabCard(dataBab: Data) {
         onClick = {
             val intent = Intent(mContext, SubbabActivity::class.java)
             intent.putExtra("bab", dataBab.bab_id)
+            intent.putExtra("bab_nama", dataBab.bab_nama)
             mContext?.startActivity(intent)
 
         }

@@ -19,6 +19,21 @@ interface EndPointApi {
     @POST("pelajaran")
     suspend fun addPljrn(@Body body: RequestBody?):ResponseBody?
 
+    @POST("buku")
+    suspend fun addBuku(@Body body: RequestBody?):ResponseBody?
+
+    @POST("bab")
+    suspend fun addBab(@Body body: RequestBody?):ResponseBody?
+
+    @POST("subbab")
+    suspend fun addSubbab(@Body body: RequestBody?):ResponseBody?
+
+    @POST("login")
+    suspend fun login(@Body body: RequestBody?):ResponseBody?
+
+    @POST("register")
+    suspend fun register(@Body body: RequestBody?):ResponseBody?
+
     @GET("pelajaran/kelas/{kelas}")
     suspend fun getDataPljrnKelas(
         @Path("kelas")id:Int

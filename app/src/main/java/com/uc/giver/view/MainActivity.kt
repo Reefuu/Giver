@@ -11,8 +11,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -21,6 +22,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.uc.giver.model.DataX
 import com.uc.giver.ui.theme.*
+import com.uc.giver.view.widgets.AccountBtn
 import com.uc.giver.view.widgets.FilterBtn
 import com.uc.giver.view.widgets.FloatingAppBtn
 import com.uc.giver.view.widgets.PelajaranCard
@@ -61,6 +63,7 @@ class MainActivity : ComponentActivity() {
                                     color = SoftWhite,
                                 ) {
                                     Column {
+                                        AccBtn()
                                         btnFilter()
                                         PljrnList(pljrn = response)
                                         FAB()
@@ -78,9 +81,7 @@ class MainActivity : ComponentActivity() {
                 setContent {
                     Scaffold(
                         floatingActionButton = {
-                            FloatingActionButton(onClick = { pljrnViewModel.addPljrn() }) {
-                                Icon(Icons.Filled.Add, null)
-                            }
+                            FAB()
                         },
                         // Defaults to FabPosition.End
                         floatingActionButtonPosition = FabPosition.End,
@@ -130,7 +131,10 @@ fun btnFilter() {
 
 @Composable
 fun FAB() {
- FloatingAppBtn()
+ FloatingAppBtn(0, 0, 0)
 }
 
-
+@Composable
+fun AccBtn(){
+    AccountBtn()
+}

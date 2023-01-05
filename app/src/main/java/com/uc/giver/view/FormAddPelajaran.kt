@@ -155,17 +155,7 @@ class FormAddPelajaran : ComponentActivity() {
     }
 }
 
-@SuppressLint("UnrememberedMutableState")
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun formAddPljrn() {
-
-    val mContext = LocalContext.current as? Activity
-
-
-}
-
 @Composable
 fun addFAB() {
-    FloatingAppBtn()
+    FloatingAppBtn(0, 0, 0)
 }
