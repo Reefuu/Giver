@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.border
@@ -13,6 +14,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,10 +35,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.uc.giver.helper.Const
-import com.uc.giver.ui.theme.AppBlueBG
-import com.uc.giver.ui.theme.GiverTheme
-import com.uc.giver.ui.theme.SoftBlack
-import com.uc.giver.ui.theme.SoftWhite
+import com.uc.giver.ui.theme.*
 import com.uc.giver.viewModel.PelajaranViewModel
 import com.uc.giver.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -180,6 +180,44 @@ fun ContentUpProfile(userViewModel: UserViewModel) {
 @Composable
 fun ContentProfile(){
     Column() {
+        val mContext = LocalContext.current as Activity
         Text(text = "Koin = ${Const.koin} (temporary)", modifier = Modifier.padding(24.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Button(onClick = {
+
+
+                val intent = Intent(mContext, RewardActivity::class.java)
+                mContext?.startActivity(intent)
+                mContext?.finish()
+            }, colors = ButtonDefaults.buttonColors(containerColor = quizGreenBtn),modifier = Modifier
+                .padding(start = 16.dp, end = 4.dp)
+                .height(50.dp)
+            ){
+                Text(text = "Reward Page", color = quizGreenText)
+            }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(top = 16.dp, bottom = 64.dp).fillMaxHeight(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            Button(onClick = {
+                Const.koin = 0
+                Const.uname = ""
+                Const.jawaban = ""
+                val intent = Intent(mContext, LogRegActivity::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                mContext?.startActivity(intent)
+                mContext?.finish()
+            }, colors = ButtonDefaults.buttonColors(containerColor = logoutBtn),modifier = Modifier
+                .padding(start = 16.dp, end = 4.dp)
+                .height(50.dp)
+            ){
+                Text(text = "LOGOUT", color = SoftWhite, fontWeight = FontWeight.ExtraBold)
+            }
+        }
     }
 }

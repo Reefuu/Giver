@@ -1,7 +1,8 @@
 package com.uc.giver.helper
 
 object Const {
-    const val BASE_URL = "http://192.168.0.114:7070/"
+    const val BASE_URL = "http://192.168.43.214:7070/"
     var uname = ""
     var koin = 0
+    var jawaban = ""
 }

@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.uc.giver.model.DataXQuiz
@@ -61,7 +62,9 @@ class QuizActivity : ComponentActivity() {
                             ) {
                                 Column {
                                     if (response != null){
-                                        Text(text = "$subbab_nama")
+                                        Text(text = "$subbab_nama", modifier = Modifier.padding(24.dp),
+                                            fontWeight = FontWeight.Bold
+                                            )
                                         QuizList(subbab = response, subbab_nama.toString())
                                     }else{
                                         Column(
